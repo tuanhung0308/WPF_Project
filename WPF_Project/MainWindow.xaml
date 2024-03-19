@@ -1,0 +1,72 @@
+﻿<Window x:Class="WPF_Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Project"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1000">
+    <Grid>
+        <!-- Giao diện cho Nông sản -->
+        <GroupBox Header="Nông sản" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10">
+            <ListView Name="produceListView" Margin="5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ProduceID}" Width="50"/>
+                        <GridViewColumn Header="Tên" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                        <GridViewColumn Header="Mô tả" DisplayMemberBinding="{Binding Description}" Width="200"/>
+                        <GridViewColumn Header="Loại" DisplayMemberBinding="{Binding Type}" Width="100"/>
+                        <GridViewColumn Header="Mùa vụ" DisplayMemberBinding="{Binding Season}" Width="100"/>
+                        <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding Quantity}" Width="100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <!-- Giao diện cho Tiến trình chăm sóc -->
+        <GroupBox Header="Tiến trình chăm sóc" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,150,0,0">
+            <ListView Name="careProcessListView" Margin="5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding CareProcessID}" Width="50"/>
+                        <GridViewColumn Header="ID Nông sản" DisplayMemberBinding="{Binding ProduceID}" Width="100"/>
+                        <GridViewColumn Header="Hoạt động" DisplayMemberBinding="{Binding Activity}" Width="200"/>
+                        <GridViewColumn Header="Ngày" DisplayMemberBinding="{Binding Date}" Width="100"/>
+                        <GridViewColumn Header="Ghi chú" DisplayMemberBinding="{Binding Notes}" Width="200"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <!-- Giao diện cho Tiến trình thu hoạch -->
+        <GroupBox Header="Tiến trình thu hoạch" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,10,0,0">
+            <ListView Name="harvestProcessListView" Margin="5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding HarvestProcessID}" Width="50"/>
+                        <GridViewColumn Header="ID Nông sản" DisplayMemberBinding="{Binding ProduceID}" Width="100"/>
+                        <GridViewColumn Header="Ngày" DisplayMemberBinding="{Binding Date}" Width="100"/>
+                        <GridViewColumn Header="Số lượng thu hoạch" DisplayMemberBinding="{Binding QuantityHarvested}" Width="150"/>
+                        <GridViewColumn Header="Ghi chú" DisplayMemberBinding="{Binding Notes}" Width="200"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <!-- Giao diện cho Tiến trình bảo quản -->
+        <GroupBox Header="Tiến trình bảo quản" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,150,0,0">
+            <ListView Name="preservationProcessListView" Margin="5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" DisplayMemberBinding="{Binding PreservationProcessID}" Width="50"/>
+                        <GridViewColumn Header="ID Nông sản" DisplayMemberBinding="{Binding ProduceID}" Width="100"/>
+                        <GridViewColumn Header="Phương pháp" DisplayMemberBinding="{Binding Method}" Width="200"/>
+                        <GridViewColumn Header="Điều kiện" DisplayMemberBinding="{Binding PreservationCondition}" Width="200"/>
+                        <GridViewColumn Header="Ngày hết hạn" DisplayMemberBinding="{Binding ExpiryDate}" Width="150"/>
+                        <GridViewColumn Header="Ghi chú" DisplayMemberBinding="{Binding Notes}" Width="200"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+    </Grid>
+</Window>
