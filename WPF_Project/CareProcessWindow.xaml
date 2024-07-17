@@ -1,0 +1,67 @@
+﻿<Window x:Class="WPF_Project.CareProcessWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Project"
+        mc:Ignorable="d"
+        Title="CareProcess" Height="800" Width="1000" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        AllowsTransparency="True">
+    <Grid Background="#fff">
+        <DockPanel VerticalAlignment="Top" Margin="10,10,10,0" Height="auto">
+            <Grid Height="571">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--StackPanel for Label and TextBox controls-->
+                <StackPanel Background="DarkSeaGreen" Orientation ="Vertical" HorizontalAlignment="Left" Width="400">
+                    <Label Name="lbTitle" Foreground="DeepPink" FontWeight="DemiBold" FontSize="20" Content="Care Process in Farm" />
+
+                    <Label  Content="Care Process Id"/>
+                    <TextBox IsReadOnly="True" Name="tbCareProcessId" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=CareProcessId, Mode=OneWay}" DataContext="{Binding ElementName=lvCareProcess,Path=SelectedItem}" />
+
+                    <Label  Content="Product Name" />
+                    <TextBox Name="tbProductName" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=Product.Name, Mode=OneWay}" DataContext="{Binding ElementName=lvCareProcess, Path=SelectedItem}" />
+
+                    <Label  Content="Activity" />
+                    <TextBox Name="tbActivity" HorizontalAlignment="Stretch" Height="25" Text="{Binding Path=Activity, Mode=OneWay}" DataContext="{Binding ElementName=lvCareProcess, Path=SelectedItem}" />
+
+                    <Label Content="Date" />
+                    <DatePicker Name="tbDate" HorizontalAlignment="Left" Height="25" Text="{Binding Path=Date}" DataContext="{Binding ElementName=lvCareProcess, Path=SelectedItem}" Width="200" />
+
+                    <Label  Content="Notes" />
+                    <TextBox Name="tbNotes" HorizontalAlignment="Stretch" Height="50" Text="{Binding Path=Notes, Mode=OneWay}" DataContext="{Binding ElementName=lvCareProcess, Path=SelectedItem}" />
+                </StackPanel>
+                <!--StackPanel for Button controls-->
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="btnLoad" Margin="10" Width="80" Content="Load" Click="btnLoad_Click"/>
+                    <Button x:Name="btnInsert" Margin="10" Width="80" Content="Insert" Click="btnInsert_Click"/>
+                    <Button x:Name="btnUpdate" Margin="10" Width="80" Content="Update" Click="btnUpdate_Click"/>
+                    <Button x:Name="btnDelete" Margin="10" Width="80" Content="Delete" Click="btnDelete_Click"/>
+                    <Button x:Name="btnRefresh" Margin="10" Width="80" Content="Refresh" Click="btnRefresh_Click"/>
+                    <Button x:Name="btnSearch" Margin="10" Width="80" Content="Search" Click="btnSearch_Click"/>
+                </StackPanel>
+                <!-- ListView control-->
+                <ListView Grid.Row="2" Name="lvCareProcess" Width="Auto" Height="Auto" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Care Process Id" Width="100" DisplayMemberBinding="{Binding Path=CareProcessId }"/>
+                            <GridViewColumn Header="Product Name" Width="100" DisplayMemberBinding="{Binding Path=Product.Name}"/>
+                            <GridViewColumn Header="Activity " Width="150" DisplayMemberBinding="{Binding Path=Activity}"/>
+                            <GridViewColumn Header="Date" Width="150" DisplayMemberBinding="{Binding Path=Date, StringFormat='dd/MM/yyyy'}"/>
+                            <GridViewColumn Header="Notes" Width="200" DisplayMemberBinding="{Binding Path=Notes}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <!-- Button control-->
+            </Grid>
+        </DockPanel>
+        <Button x:Name="btHome" Canvas.Left="114" Height="50" Canvas.Top="10" 
+                Width="196" Content="Home" Click="btHome_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="1,3,1,1" Margin="515,112,0,0" />
+    </Grid>
+</Window>

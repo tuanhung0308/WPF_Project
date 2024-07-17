@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace WPF_Project.Models
 {
-    public partial class Produce
+    public partial class Product
     {
-        public Produce()
+        public Product()
         {
             CareProcesses = new HashSet<CareProcess>();
             HarvestProcesses = new HashSet<HarvestProcess>();
             PreservationProcesses = new HashSet<PreservationProcess>();
         }
 
-        public int ProduceId { get; set; }
+        public int ProductId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Type { get; set; }

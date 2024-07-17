@@ -20,7 +20,8 @@ namespace WPF_Project.Models
         public virtual DbSet<CareProcess> CareProcesses { get; set; } = null!;
         public virtual DbSet<HarvestProcess> HarvestProcesses { get; set; } = null!;
         public virtual DbSet<PreservationProcess> PreservationProcesses { get; set; } = null!;
-        public virtual DbSet<Produce> Produces { get; set; } = null!;
+        public virtual DbSet<Product> Products { get; set; } = null!;
+        public virtual DbSet<staff> staff { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -43,11 +44,11 @@ namespace WPF_Project.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.ProduceId).HasColumnName("ProduceID");
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
-                entity.HasOne(d => d.Produce)
+                entity.HasOne(d => d.Product)
                     .WithMany(p => p.CareProcesses)
-                    .HasForeignKey(d => d.ProduceId)
+                    .HasForeignKey(d => d.ProductId)
                     .HasConstraintName("FK__CareProce__Produ__398D8EEE");
             });
 
@@ -59,11 +60,11 @@ namespace WPF_Project.Models
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
-                entity.Property(e => e.ProduceId).HasColumnName("ProduceID");
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
-                entity.HasOne(d => d.Produce)
+                entity.HasOne(d => d.Product)
                     .WithMany(p => p.HarvestProcesses)
-                    .HasForeignKey(d => d.ProduceId)
+                    .HasForeignKey(d => d.ProductId)
                     .HasConstraintName("FK__HarvestPr__Produ__3C69FB99");
             });
 
@@ -75,23 +76,34 @@ namespace WPF_Project.Models
 
                 entity.Property(e => e.ExpiryDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ProduceId).HasColumnName("ProduceID");
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
-                entity.HasOne(d => d.Produce)
+                entity.HasOne(d => d.Product)
                     .WithMany(p => p.PreservationProcesses)
-                    .HasForeignKey(d => d.ProduceId)
+                    .HasForeignKey(d => d.ProductId)
                     .HasConstraintName("FK__Preservat__Produ__3F466844");
             });
 
-            modelBuilder.Entity<Produce>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
-                entity.ToTable("Produce");
+                entity.ToTable("Product");
 
-                entity.Property(e => e.ProduceId).HasColumnName("ProduceID");
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
                 entity.Property(e => e.Season).HasMaxLength(50);
 
                 entity.Property(e => e.Type).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<staff>(entity =>
+            {
+                entity.ToTable("Staff");
+
+                entity.Property(e => e.StaffId).HasColumnName("StaffID");
+
+                entity.Property(e => e.Password).HasMaxLength(50);
+
+                entity.Property(e => e.Username).HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);
